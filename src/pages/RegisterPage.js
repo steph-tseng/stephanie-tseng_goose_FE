@@ -20,10 +20,10 @@ const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    maxHeight: "100vh",
+    height: "100vh",
     backgroundImage:
       "url(https://4.bp.blogspot.com/-uBDzPvlXu1I/UzLFIl70acI/AAAAAAAABHw/SNBp1LXVTkQ/s1600/2-23-14.jpg)",
-    backgroundSize: "cover",
+    backgroundSize: "100vw auto",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
     backgroundPosition: "top",
