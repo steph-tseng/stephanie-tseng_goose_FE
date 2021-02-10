@@ -10,7 +10,7 @@ const loginRequest = ({ email, password }) => async (dispatch) => {
   try {
     const res = await api.post(`auth/login`, { email, password });
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.data });
-    console.log(res.data.data);
+    // dispatch(authActions.getCurrentUser(res.data.data.accessToken));
     toast.success(`Welcome ${res.data.data.user.name}`);
     dispatch(routeActions.redirect("/following/projects"));
   } catch (error) {

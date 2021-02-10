@@ -211,8 +211,8 @@ const PublicNavbar = () => {
                 xs={9}
                 sm={9}
                 md={10}
-                lg={11}
-                xl={11}
+                lg={isAuthenticated ? 11 : 10}
+                xl={isAuthenticated ? 11 : 10}
                 style={{ overflow: "scroll" }}
               >
                 <Typography variant="h6">
@@ -351,8 +351,8 @@ const PublicNavbar = () => {
                 xs={3}
                 sm={3}
                 md={2}
-                lg={1}
-                xl={1}
+                lg={isAuthenticated ? 1 : 2}
+                xl={isAuthenticated ? 1 : 2}
                 style={{ display: "flex" }}
               >
                 <Typography
