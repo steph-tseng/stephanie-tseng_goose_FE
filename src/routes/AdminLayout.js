@@ -16,7 +16,6 @@ const AdminLayout = () => {
     <>
       <PublicNavbar />
       <Grid container>
-        <AlertMsg />
         <Switch>
           <PrivateRoute exact path="/admin/profile" component={ProfilePage} />
           <PrivateRoute

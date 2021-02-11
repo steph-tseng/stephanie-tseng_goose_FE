@@ -163,7 +163,11 @@ const HonkChat = () => {
             ))}
           </Grid>
         </ScrollToBottom>
-        <form onSubmit={handleSendMessage} className={classes.textField}>
+        <form
+          onSubmit={handleSendMessage}
+          className={classes.textField}
+          autoComplete="off"
+        >
           <TextField
             className={classes.textField}
             variant="outlined"
@@ -171,6 +175,7 @@ const HonkChat = () => {
             name="newMessage"
             value={newMessage}
             onChange={handleChangeMessage}
+            autoComplete="off"
           />
         </form>
       </Paper>
