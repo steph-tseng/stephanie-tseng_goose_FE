@@ -9,11 +9,15 @@ import { GoogleLogin } from "react-google-login";
 import {
   Button,
   Grid,
+  IconButton,
+  Input,
+  InputAdornment,
   makeStyles,
   Paper,
   TextField,
   Typography,
 } from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 const FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -55,6 +59,14 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const handleClickShowPassword = () => {
+    setFormData({ ...formData, showPassword: !formData.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -129,22 +141,53 @@ const RegisterPage = () => {
                 />
               </Grid>
               <Grid item lg={12} className={classes.centering}>
-                <TextField
-                  placeholder="Password"
-                  type="password"
+                <Input
                   name="password"
+                  placeholder="Password"
+                  type={formData.showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleChange}
+                  classes={{ root: classes.textField }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {formData.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
               </Grid>
               <Grid item lg={12} className={classes.centering}>
-                <TextField
-                  placeholder="Confirm your password"
+                <Input
                   name="password2"
-                  type="password"
+                  placeholder="Confirm password"
+                  type={formData.showPassword ? "text" : "password"}
                   value={formData.password2}
                   onChange={handleChange}
-                  autoComplete="off"
+                  classes={{ root: classes.textField }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {formData.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
               </Grid>
             </Grid>

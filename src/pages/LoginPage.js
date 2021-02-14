@@ -114,7 +114,9 @@ const LoginPage = () => {
             </Grid>
           </form>
           <Grid container justify="center">
-            <Button style={{ color: "#fff" }}>Login</Button>
+            <Button style={{ color: "#fff" }} onClick={handleSubmit}>
+              Login
+            </Button>
           </Grid>
           <p className={classes.centering} style={{ color: "#4D4D4D" }}>
             Don't have an account?
