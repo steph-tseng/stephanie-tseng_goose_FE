@@ -24,7 +24,6 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
       };
     case types.GET_CURRENT_USER_SUCCESS:
-      console.log("user", payload);
       return {
         ...state,
         user: payload,

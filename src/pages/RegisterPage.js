@@ -141,6 +141,7 @@ const RegisterPage = () => {
                 <TextField
                   placeholder="Confirm your password"
                   name="password2"
+                  type="password"
                   value={formData.password2}
                   onChange={handleChange}
                   autoComplete="off"
@@ -149,7 +150,9 @@ const RegisterPage = () => {
             </Grid>
           </form>
           <Grid container justify="center">
-            <Button style={{ color: "#fff" }}>Register</Button>
+            <Button style={{ color: "#fff" }} onClick={handleSubmit}>
+              Register
+            </Button>
           </Grid>
           <p className={classes.centering} style={{ color: "#4D4D4D" }}>
             Already have an account?
