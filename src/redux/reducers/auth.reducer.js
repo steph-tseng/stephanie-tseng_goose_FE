@@ -17,8 +17,14 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_SUCCESS:
     case types.LOGIN_FACEBOOK_SUCCESS:
     case types.LOGIN_GOOGLE_SUCCESS:
+      return {
+        ...state,
+        user: payload.user,
+        loading: false,
+        isAuthenticated: true,
+      };
     case types.GET_CURRENT_USER_SUCCESS:
-      // console.log("asdfas", payload);
+      console.log("user", payload);
       return {
         ...state,
         user: payload,
@@ -43,7 +49,7 @@ const authReducer = (state = initialState, action) => {
     case types.REGISTER_REQUEST:
       return { ...state, loading: true };
     case types.REGISTER_SUCCESS:
-      return { ...state, loading: false };
+      return { ...state, user: payload, loading: false };
     case types.REGISTER_FAILURE:
       return { ...state, loading: false };
 

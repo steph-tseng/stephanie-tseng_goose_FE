@@ -19,7 +19,6 @@ const PublicLayout = () => {
     <>
       <PublicNavbar />
       <Grid container>
-        <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/topics" component={TopicListPage} />

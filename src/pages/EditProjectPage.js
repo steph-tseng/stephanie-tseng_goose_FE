@@ -256,6 +256,7 @@ const AddEditProjectPage = () => {
         dispatch(projectActions.updateProject(project._id, formData));
       }
     }
+    history.goBack();
   };
 
   useEffect(() => {

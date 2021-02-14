@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     height: "50vh",
     overflow: "hidden",
     // backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,7)), url(https://lh3.googleusercontent.com/proxy/g7IJW3Mugb2HtU9ydOqUPfsaKWK0Mv-I7V61T3rO8zLaIoNlyHqCk9ozbB9aYrFzwDPEVCIJW3W17RUZjI-bcULnPNRTyqv2uswoztiEWrCzC4ggkJcPim4wOcsUJKdW0j7OIT_wUDTea59XeBN-GyGQpNNn7xVN0klvHuOnU8bDgDemweGQ3rk)`,
-    backgroundSize: "100vw",
+    backgroundSize: "120vw",
     objectFit: "cover",
     backgroundColor: "rgba(0,0,0,0.7)",
     color: "#fff",

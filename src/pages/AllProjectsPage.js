@@ -1,8 +1,17 @@
-import { Grid, makeStyles, Paper, Typography } from "@material-ui/core";
+import {
+  FormControl,
+  Grid,
+  Input,
+  makeStyles,
+  Paper,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import Pagination from "@material-ui/lab/Pagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectCard from "../components/BigProjectCard";
+import SplitButton from "../components/MergeButtonMUI";
 import SmallProjectCard from "../components/SmallProjectCard";
 import projectActions from "../redux/actions/project.actions";
 import userActions from "../redux/actions/user.actions";
@@ -37,9 +46,47 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(10),
     // marginTop: "70px",
   },
+
   container: {
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
+  },
+  inputRoot: {
+    color: "inherit",
+    borderRadius: "10px",
+    borderBottomColor: "white",
+    // backgroundColor: "grey",
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: theme.palette.primary.dark,
+      },
+      "&:hover fieldset": {
+        borderColor: theme.palette.primary.main,
+      },
+    },
+    "& .MuiInput-underline": {
+      borderBottomColor: "white",
+    },
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    color: "#fff",
+    // vertical padding + font size from searchIcon
+    // paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: "12ch",
+      "&:focus": {
+        width: "20ch",
+      },
+    },
+    "& .MuiInputBase-input": {
+      color: "white",
+    },
+  },
+  input: {
+    color: "white",
   },
   pagination: {
     marginBottom: theme.spacing(2),
@@ -67,6 +114,11 @@ const AllProjectsPage = () => {
     setPageNum(value);
   };
 
+  const handleSearchText = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
   useEffect(() => {
     dispatch(projectActions.projectsRequest(pageNum));
   }, [dispatch, pageNum]);
@@ -79,9 +131,46 @@ const AllProjectsPage = () => {
 
   return (
     <div>
-      <header className={classes.header}>
-        <Typography variant="h1">All Projects</Typography>
-      </header>
+      <Grid container className={classes.header}>
+        <Grid
+          item
+          xs={9}
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginRight: "-2vw",
+          }}
+        >
+          <FormControl color="primary">
+            <TextField
+              label="Search"
+              placeholder="Key words, title..."
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              InputProps={{
+                className: classes.input,
+              }}
+              type="search"
+              value={query}
+              onChange={handleSearchText}
+              inputProps={{ "aria-label": "search" }}
+              color="primary"
+              variant="filled"
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={2}>
+          <SplitButton
+            options={["Title", "Content", "Tags"]}
+            setSearchBy={setSearchBy}
+          />
+        </Grid>
+        <Grid item style={{ marginTop: "-30vh" }}>
+          <Typography variant="h1">All Projects</Typography>
+        </Grid>
+      </Grid>
       {projects && (
         <Grid container justify="center">
           <Grid item sm={12} lg={12} style={{ marginTop: "-5vh" }}>

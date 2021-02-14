@@ -2,17 +2,22 @@ import React, { useEffect } from "react";
 import "./App.css";
 import AlertMsg from "./components/AlertMsg";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AdminLayout from "./routes/AdminLayout";
+import UserLayout from "./routes/UserLayout";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicLayout from "./routes/PublicLayout";
-import { createMuiTheme, Grid, ThemeProvider } from "@material-ui/core";
+import {
+  createMuiTheme,
+  Grid,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@material-ui/core";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { useDispatch, useSelector } from "react-redux";
 import authActions from "./redux/actions/auth.actions";
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
     primary: {
       light: "#a3c0d6",
@@ -41,6 +46,7 @@ const theme = createMuiTheme({
     fontFamily: ["Arvo", "Raleway"],
   },
 });
+theme = responsiveFontSizes(theme);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -87,7 +93,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/register" component={RegisterPage} />
-                <PrivateRoute path="/admin" component={AdminLayout} />
+                <PrivateRoute path="/user" component={UserLayout} />
                 <Route path="/" component={PublicLayout} />
                 <Route component={NotFoundPage} />
               </Switch>

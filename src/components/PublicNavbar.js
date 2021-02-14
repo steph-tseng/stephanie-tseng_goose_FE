@@ -202,6 +202,7 @@ const PublicNavbar = () => {
               <img
                 src={gooseLogo}
                 alt="Goose"
+                style={{ marginTop: "1vh" }}
                 height="50px"
                 onClick={() => setValue(0)}
               />
@@ -371,7 +372,7 @@ const PublicNavbar = () => {
                         style={{ padding: "10px" }}
                         classes={{ root: classes.btn }}
                         component={Link}
-                        to="/admin/profile"
+                        to="/user/profile"
                         {...bindHover(userActionsPopupState)}
                       >
                         <AccountCircle fontSize="large" />
@@ -403,7 +404,7 @@ const PublicNavbar = () => {
                         <MenuItem
                           className={classes.menu}
                           component={Link}
-                          to="/admin/profile"
+                          to="/user/profile"
                           onClick={() => {
                             cancelSelected();
                             userActionsPopupState.close();
@@ -414,7 +415,7 @@ const PublicNavbar = () => {
                         <MenuItem
                           className={classes.menu}
                           component={Link}
-                          to="/admin/users"
+                          to="/user/users"
                           onClick={() => {
                             cancelSelected();
                             userActionsPopupState.close();
@@ -425,7 +426,7 @@ const PublicNavbar = () => {
                         <MenuItem
                           className={classes.menu}
                           component={Link}
-                          to="/admin/following"
+                          to="/user/following"
                           onClick={() => {
                             cancelSelected();
                             userActionsPopupState.close();
@@ -436,7 +437,7 @@ const PublicNavbar = () => {
                         <MenuItem
                           className={classes.menu}
                           component={Link}
-                          to="/admin/messages"
+                          to="/user/messages"
                           onClick={() => {
                             cancelSelected();
                             userActionsPopupState.close();

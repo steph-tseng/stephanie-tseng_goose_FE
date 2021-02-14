@@ -47,6 +47,8 @@ const ProfilePage = () => {
   const user = useSelector((state) => state.auth.user);
   const history = useHistory();
 
+  console.log(user);
+
   return (
     <Grid
       container
@@ -55,7 +57,6 @@ const ProfilePage = () => {
       classes={{ root: classes.container }}
     >
       <div className={classes.appbar}></div>
-
       <Paper classes={{ root: classes.paper }}>
         <Grid
           container
@@ -119,7 +120,7 @@ const ProfilePage = () => {
             className={classes.button}
             color="primary"
             variant="contained"
-            onClick={() => history.push("/admin/profile/edit")}
+            onClick={() => history.push("/user/profile/edit")}
           >
             Edit
           </Button>

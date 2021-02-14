@@ -81,7 +81,7 @@ const ForYouPage = () => {
             <Paper>
               <Typography variant="h6">
                 You're not following anyone! Go follow some people from the
-                <Link to="/admin/users" className={classes.a}>
+                <Link to="/user/users" className={classes.a}>
                   {" "}
                   full list of users
                 </Link>{" "}

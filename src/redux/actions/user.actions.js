@@ -63,7 +63,7 @@ const updateUserInfo = ({
     console.log(res.data.data);
     dispatch({ type: types.UPDATE_USER_SUCCESS, payload: res.data.data });
     dispatch(userActions.getCurrentUserInfo(authToken));
-    dispatch(routeActions.redirect("/admin/Profile"));
+    dispatch(routeActions.redirect("/user/Profile"));
   } catch (error) {
     dispatch({ type: types.UPDATE_USER_FAILURE, payload: null });
   }
