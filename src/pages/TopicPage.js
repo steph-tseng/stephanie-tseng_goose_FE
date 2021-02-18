@@ -1,7 +1,7 @@
 import {
+  Button,
   Grid,
   makeStyles,
-  ThemeProvider,
   Typography,
   useTheme,
 } from "@material-ui/core";
@@ -12,6 +12,7 @@ import ProjectCard from "../components/BigProjectCard";
 import SmallProjectCard from "../components/SmallProjectCard";
 import projectActions from "../redux/actions/project.actions";
 import topicActions from "../redux/actions/topic.actions";
+import Pagination from "@material-ui/lab/Pagination";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,6 @@ const TopicPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const history = useHistory();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const topicId = params.id;
   const topic = useSelector((state) => state.topic.selectedTopic);
   const projects = useSelector((state) => state.project.projects);
@@ -39,6 +39,7 @@ const TopicPage = () => {
   const totalPageNum = useSelector((state) => state.project.totalPageNum);
 
   const project = useSelector((state) => state.project.selectedProject);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   useEffect(() => {
     dispatch(projectActions.getSelctedProject("60050f60a3ca4e001770c439"));
@@ -54,6 +55,9 @@ const TopicPage = () => {
 
   const handleDelete = () => {
     dispatch(topicActions.deleteTopic(topicId));
+    projects.forEach((project) =>
+      dispatch(projectActions.deleteProject(project._id))
+    );
     history.goBack();
   };
 
@@ -94,6 +98,11 @@ const TopicPage = () => {
           <Typography variant="h1" color="primary" style={{ fontSize: "10vw" }}>
             {topic?.title}
           </Typography>
+          {isAdmin && (
+            <Button variant="secondary" onClick={handleDelete}>
+              Delete
+            </Button>
+          )}
         </div>
 
         {project && (
@@ -108,6 +117,22 @@ const TopicPage = () => {
                 </Grid>
               );
             })}
+          </Grid>
+        )}
+        {totalPageNum > 1 && (
+          <Grid container justify="center">
+            <Pagination
+              defaultPage={1}
+              page={pageNum}
+              count={totalPageNum}
+              onChange={handlePageChange}
+              // variant="outlined"
+              shape="rounded"
+              variant="outlined"
+              size="large"
+              color="primary"
+              classes={{ root: classes.pagination }}
+            />
           </Grid>
         )}
       </div>

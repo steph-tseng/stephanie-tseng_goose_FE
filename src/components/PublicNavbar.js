@@ -415,6 +415,17 @@ const PublicNavbar = () => {
                         <MenuItem
                           className={classes.menu}
                           component={Link}
+                          to="/user/projects"
+                          onClick={() => {
+                            cancelSelected();
+                            userActionsPopupState.close();
+                          }}
+                        >
+                          Your Projects
+                        </MenuItem>
+                        <MenuItem
+                          className={classes.menu}
+                          component={Link}
                           to="/user/users"
                           onClick={() => {
                             cancelSelected();

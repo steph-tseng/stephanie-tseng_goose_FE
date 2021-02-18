@@ -41,6 +41,9 @@ const ForYouPage = () => {
 
   useEffect(() => {
     dispatch(userActions.getListOfFollowing());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(projectActions.projectsOfFollowing(pageNum));
   }, [dispatch, pageNum]);
 

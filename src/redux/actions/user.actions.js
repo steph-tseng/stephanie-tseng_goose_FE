@@ -43,6 +43,16 @@ const getUsers = (
   }
 };
 
+const getSelectedUser = (userId) => async (dispatch) => {
+  dispatch({ type: types.GET_SELECTED_USER_REQUEST, payload: null });
+  try {
+    const res = await api.get(`/users/${userId}`);
+    dispatch({ type: types.GET_SELECTED_USER_SUCCESS, payload: res.data.data });
+  } catch (error) {
+    dispatch({ type: types.GET_SELECTED_USER_FAILURE, payload: null });
+  }
+};
+
 const updateUserInfo = ({
   authToken,
   name,
@@ -63,7 +73,7 @@ const updateUserInfo = ({
     console.log(res.data.data);
     dispatch({ type: types.UPDATE_USER_SUCCESS, payload: res.data.data });
     dispatch(userActions.getCurrentUserInfo(authToken));
-    dispatch(routeActions.redirect("/user/Profile"));
+    dispatch(routeActions.redirect("/user/profile"));
   } catch (error) {
     dispatch({ type: types.UPDATE_USER_FAILURE, payload: null });
   }
@@ -88,7 +98,6 @@ const getListOfFollowing = () => async (dispatch) => {
   dispatch({ type: types.GET_FOLLOWING_REQUEST, payload: null });
   try {
     const res = await api.get(`/following`);
-
     dispatch({ type: types.GET_FOLLOWING_SUCCESS, payload: res.data.data });
   } catch (error) {
     // console.log("errrr", error);
@@ -111,6 +120,7 @@ const unfollow = (toUser) => async (dispatch) => {
 const userActions = {
   getCurrentUserInfo,
   getUsers,
+  getSelectedUser,
   updateUserInfo,
   followRequest,
   getListOfFollowing,

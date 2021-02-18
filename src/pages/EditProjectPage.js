@@ -225,32 +225,32 @@ const AddEditProjectPage = () => {
       if (tags.includes(", ")) {
         const tagArray = tags.split(", ");
         dispatch(
-          projectActions.createNewProject({
+          projectActions.createNewProject(
             title,
             content,
             topicId,
             tagArray,
-            images,
-          })
+            images
+          )
         );
       } else {
         dispatch(projectActions.createNewProject(formData));
       }
-    } else if (addOrEdit === "Edit") {
+    } else if (addOrEdit.current === "Edit") {
       // console.log("form", formData);
       const projectId = project._id;
       // console.log(projectId);
       if (tags.includes(", ")) {
         const tagArray = tags.split(", ");
         dispatch(
-          projectActions.updateProject({
+          projectActions.updateProject(
             projectId,
             title,
             content,
             topicId,
             tagArray,
-            images,
-          })
+            images
+          )
         );
       } else {
         dispatch(projectActions.updateProject(project._id, formData));

@@ -3,6 +3,7 @@ const initialState = {
   user: {},
   isAuthenticated: null,
   loading: false,
+  isAdmin: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ const authReducer = (state = initialState, action) => {
         user: payload.user,
         loading: false,
         isAuthenticated: true,
+        isAdmin: payload.user.isAdmin ? true : false,
       };
     case types.GET_CURRENT_USER_SUCCESS:
       return {
@@ -29,6 +31,7 @@ const authReducer = (state = initialState, action) => {
         user: payload,
         loading: false,
         isAuthenticated: true,
+        isAdmin: payload.isAdmin ? true : false,
       };
     case types.LOGIN_FAILURE:
     case types.LOGIN_FACEBOOK_FAILURE:

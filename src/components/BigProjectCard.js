@@ -153,7 +153,7 @@ const ProjectCard = ({ project }) => {
                 </Typography>
               </Paper>
             </Grid>
-          ) : project?.images.length > 0 ? (
+          ) : project?.images?.length > 0 ? (
             <Grid container justify="center" className="project-card">
               <img
                 src={project.images[0]}
@@ -252,7 +252,7 @@ const ProjectCard = ({ project }) => {
                   <Typography variant="h6">
                     {"By " + project?.author?.name || "author"}
                   </Typography>
-                  {!following.includes(project.author._id) ? (
+                  {!following.includes(project?.author?._id) ? (
                     <Button
                       variant="text"
                       color="primary"

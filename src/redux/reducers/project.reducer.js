@@ -14,25 +14,23 @@ const projectReducer = (state = initialState, action) => {
     case types.GET_PROJECTS_REQUEST:
     case types.GET_PROJECTS_OF_FOLLOWING_REQUEST:
     case types.GET_PROJECTS_OF_TOPIC_REQUEST:
+    case types.GET_PROJECTS_BY_AUTHOR_REQUEST:
     case types.GET_REVIEW_REQUEST:
       return { ...state, loading: true };
     case types.GET_PROJECTS_SUCCESS:
+    case types.GET_PROJECTS_OF_FOLLOWING_SUCCESS:
+    case types.GET_PROJECTS_OF_TOPIC_SUCCESS:
+    case types.GET_PROJECTS_BY_AUTHOR_SUCCESS:
       return {
         ...state,
         projects: payload.projects,
         totalPageNum: payload.totalPages,
         loading: false,
       };
-    case types.GET_PROJECTS_OF_FOLLOWING_SUCCESS:
-    case types.GET_PROJECTS_OF_TOPIC_SUCCESS:
-      return {
-        ...state,
-        projects: payload.projects,
-        loading: false,
-      };
     case types.GET_PROJECTS_FAILURE:
     case types.GET_PROJECTS_OF_FOLLOWING_FAILURE:
     case types.GET_PROJECTS_OF_TOPIC_FAILURE:
+    case types.GET_PROJECTS_BY_AUTHOR_FAILURE:
     case types.GET_REVIEW_FAILURE:
       return { ...state, loading: false };
 

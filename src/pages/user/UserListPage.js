@@ -1,6 +1,7 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import ProfileCard from "../../components/ProfileCard";
 import projectActions from "../../redux/actions/project.actions";
 import userActions from "../../redux/actions/user.actions";
@@ -31,6 +32,7 @@ const UserListPage = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
   const [pageNum, setPageNum] = useState(1);
+  const history = useHistory();
   const totalPageNum = useSelector((state) => state.project.totalPageNum);
   const following = useSelector((state) => state.user.following).map(
     (item) => item._id
@@ -60,9 +62,23 @@ const UserListPage = () => {
           All Users
         </Typography>
       </header>
-      <Grid container spacing={10} classes={{ root: classes.container }}>
+      <Grid
+        container
+        justify="center"
+        spacing={10}
+        classes={{ root: classes.container }}
+      >
         {users?.map((user) => (
-          <Grid item xs={12} sm={6} md={6} lg={4} xl={3}>
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            lg={4}
+            xl={3}
+            key={user._id}
+            onClick={() => history.push(`/user/${user._id}`)}
+          >
             <ProfileCard
               user={user}
               startFollowing={startFollowing}

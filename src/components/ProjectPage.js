@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import projectActions from "../redux/actions/project.actions";
-import { Button, Divider, IconButton } from "@material-ui/core";
+import { Button, Chip, Divider, IconButton } from "@material-ui/core";
 import { Chat, Delete, Edit } from "@material-ui/icons";
 import ReviewForm from "../components/ReviewForm";
 // import ReactionList from "../components/ReactionList";
@@ -92,6 +92,13 @@ const ProjectPage = () => {
     dispatch(userActions.unfollow(userId));
   };
 
+  const clickTag = (tag) => {
+    let pageNum = 1;
+    let query = tag;
+    let searchBy = "tags";
+    dispatch(projectActions.projectsRequest(pageNum, query, searchBy));
+  };
+
   return (
     <div className={classes.root}>
       <div className={classes.textBox}>
@@ -117,7 +124,14 @@ const ProjectPage = () => {
         <h1 className=" mt-1">{project?.title}</h1>
         <ReactMarkdown allowDangerousHtml>{project?.content}</ReactMarkdown>
         {project?.tags
-          ? project?.tags?.map((tag) => <small key={tag}>#{tag} </small>)
+          ? project?.tags?.map((tag) => (
+              <Chip
+                key={tag}
+                label={tag}
+                onClick={() => clickTag(tag)}
+                variant="outlined"
+              />
+            ))
           : ""}
 
         {isAuthenticated && (

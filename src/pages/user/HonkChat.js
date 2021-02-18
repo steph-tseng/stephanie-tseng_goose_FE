@@ -1,9 +1,11 @@
 import {
+  AppBar,
   Avatar,
   Grid,
   makeStyles,
   Paper,
   TextField,
+  Toolbar,
   Typography,
 } from "@material-ui/core";
 import React, { useEffect, useRef, useState } from "react";
@@ -201,6 +203,19 @@ const HonkChat = () => {
       <Grid item>
         <Paper className={classes.paper1} children={children} />
       </Grid>
+      <AppBar
+        color="secondary"
+        position="fixed"
+        style={{ top: "auto", bottom: 0 }}
+      >
+        <Toolbar>
+          <Grid container justify="center">
+            <Typography align="center" variant="body1">
+              © 2021 Goose, Inc. All Rights Reserved.
+            </Typography>
+          </Grid>
+        </Toolbar>
+      </AppBar>
     </Grid>
   );
 };

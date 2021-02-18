@@ -31,7 +31,8 @@ const projectsOfFollowing = (pageNum, query, searchBy = "author") => async (
   dispatch({ type: types.GET_PROJECTS_OF_FOLLOWING_REQUEST, payload: null });
   try {
     // TODO
-    const res = await api.get(`/projects/following?page=${pageNum}&limit=10`);
+    //page=${pageNum}&limit=10
+    const res = await api.get(`/projects/issue/following`);
     dispatch({
       type: types.GET_PROJECTS_OF_FOLLOWING_SUCCESS,
       payload: res.data.data,
@@ -56,6 +57,22 @@ const projectsByTopic = (pageNum, topicId) => async (dispatch) => {
     dispatch({ type: types.GET_PROJECTS_OF_TOPIC_FAILURE, payload: null });
   }
 };
+
+const projectsByAuthor = (pageNum, userId) => async (dispatch) => {
+  dispatch({ type: types.GET_PROJECTS_BY_AUTHOR_REQUEST, payload: null });
+  try {
+    const res = await api.get(
+      `/projects/user/${userId}?page=${pageNum}&limit=10`
+    );
+    dispatch({
+      type: types.GET_PROJECTS_BY_AUTHOR_SUCCESS,
+      payload: res.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: types.GET_PROJECTS_BY_AUTHOR_FAILURE, payload: null });
+  }
+};
+
 // const projectsRequest = (
 //   topicId,
 //   pagenum,
@@ -117,12 +134,16 @@ const createNewProject = ({
 
 const updateProject = (
   projectId,
-  { title, content, topicId, tags },
+  title,
+  content,
+  topicId,
+  tags,
   redirectTo = "__GO_BACK__"
 ) => async (dispatch) => {
   // console.log("ooooo", projectId);
   dispatch({ type: types.UPDATE_PROJECT_REQUEST, payload: null });
   try {
+    console.log(title, content, topicId, tags);
     const res = api.put(`projects/${projectId}`, {
       title,
       content,
@@ -211,6 +232,7 @@ const postEmoji = (targetType, targetId, emoji) => async (dispatch) => {
 const projectActions = {
   projectsRequest,
   getSelctedProject,
+  projectsByAuthor,
   projectsOfFollowing,
   projectsByTopic,
   createNewProject,
