@@ -13,6 +13,8 @@ import SmallProjectCard from "../components/SmallProjectCard";
 import projectActions from "../redux/actions/project.actions";
 import topicActions from "../redux/actions/topic.actions";
 import Pagination from "@material-ui/lab/Pagination";
+import SearchPopover from "../components/SearchPopover";
+import searchActions from "../redux/actions/search.actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +42,22 @@ const TopicPage = () => {
 
   const project = useSelector((state) => state.project.selectedProject);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const [query, setQuery] = useState("");
+  const [searchBy, setSearchBy] = useState("content");
+  const showSearch = useSelector((state) => state.search.showSearch);
 
-  useEffect(() => {
-    dispatch(projectActions.getSelctedProject("60050f60a3ca4e001770c439"));
-  }, [dispatch]);
+  const handleSearchText = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const setSearch = () => {
+    dispatch(searchActions.setShowSearch(showSearch ? null : "show"));
+  };
+
+  // useEffect(() => {
+  //   dispatch(projectActions.getSelctedProject("60050f60a3ca4e001770c439"));
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(topicActions.getSelctedTopic(topicId));
@@ -52,6 +66,13 @@ const TopicPage = () => {
   useEffect(() => {
     dispatch(projectActions.projectsByTopic(pageNum, topicId));
   }, [dispatch, topicId, pageNum]);
+
+  useEffect(() => {
+    if (query)
+      dispatch(
+        projectActions.projectsByTopic(pageNum, topicId, query, searchBy)
+      );
+  }, [dispatch, topicId, pageNum, query, searchBy]);
 
   const handleDelete = () => {
     dispatch(topicActions.deleteTopic(topicId));
@@ -67,6 +88,12 @@ const TopicPage = () => {
 
   return (
     <Grid container className={classes.root}>
+      <SearchPopover
+        showSearch={showSearch}
+        setSearch={setSearch}
+        query={query}
+        handleSearchText={handleSearchText}
+      />
       <div className={classes.header}>
         {topic?.image[0] ? (
           <img
@@ -93,6 +120,7 @@ const TopicPage = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            zIndex: 0,
           }}
         >
           <Typography variant="h1" color="primary" style={{ fontSize: "10vw" }}>
@@ -105,9 +133,9 @@ const TopicPage = () => {
           )}
         </div>
 
-        {project && (
+        {projects && (
           <Grid container justify="center">
-            <Grid item sm={12} lg={12} style={{ marginTop: "-5vh" }}>
+            <Grid item sm={12} lg={12} style={{ marginTop: "-5vh", zIndex: 2 }}>
               <ProjectCard project={projects[0]} />
             </Grid>
             {projects?.slice(1).map((project) => {

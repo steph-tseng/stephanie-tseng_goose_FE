@@ -8,9 +8,6 @@ const projectsRequest = (pagenum, query, searchBy) => async (dispatch) => {
   try {
     // TODO
     if (searchBy && query) {
-      // const res = await api.get(
-      //   `/projects?page=${pagenum}&limit=10&${searchBy}[$regex]=${query}&${searchBy}[$options]=i`
-      // );
       const res = await api.get(
         `/projects?page=${pagenum}&limit=10&${searchBy}[$regex]=${query}&${searchBy}[$options]=i`
       );
@@ -25,14 +22,13 @@ const projectsRequest = (pagenum, query, searchBy) => async (dispatch) => {
   }
 };
 
-const projectsOfFollowing = (pageNum, query, searchBy = "author") => async (
-  dispatch
-) => {
+const projectsOfFollowing = (pageNum) => async (dispatch) => {
   dispatch({ type: types.GET_PROJECTS_OF_FOLLOWING_REQUEST, payload: null });
   try {
     // TODO
-    //page=${pageNum}&limit=10
-    const res = await api.get(`/projects/issue/following`);
+    const res = await api.get(
+      `/projects/issue/following?page=${pageNum}&limit=10`
+    );
     dispatch({
       type: types.GET_PROJECTS_OF_FOLLOWING_SUCCESS,
       payload: res.data.data,
@@ -43,56 +39,62 @@ const projectsOfFollowing = (pageNum, query, searchBy = "author") => async (
   }
 };
 
-const projectsByTopic = (pageNum, topicId) => async (dispatch) => {
+const projectsByTopic = (pageNum, topicId, query, searchBy) => async (
+  dispatch
+) => {
   dispatch({ type: types.GET_PROJECTS_OF_TOPIC_REQUEST, payload: null });
   try {
-    const res = await api.get(
-      `/projects/topics/${topicId}?page=${pageNum}&limit=10`
-    );
-    dispatch({
-      type: types.GET_PROJECTS_OF_TOPIC_SUCCESS,
-      payload: res.data.data,
-    });
+    if (query) {
+      const res = await api.get(
+        `/projects/topics/${topicId}?page=${pageNum}&limit=10&${searchBy}[$regex]=${query}&${searchBy}[$options]=i`
+      );
+      console.log("query", res.data.data);
+      dispatch({
+        type: types.GET_PROJECTS_OF_TOPIC_SUCCESS,
+        payload: res.data.data,
+      });
+    } else {
+      const res = await api.get(
+        `/projects/topics/${topicId}?page=${pageNum}&limit=10`
+      );
+      console.log("no query");
+      console.log(res.data.data);
+      dispatch({
+        type: types.GET_PROJECTS_OF_TOPIC_SUCCESS,
+        payload: res.data.data,
+      });
+    }
   } catch (error) {
     dispatch({ type: types.GET_PROJECTS_OF_TOPIC_FAILURE, payload: null });
   }
 };
 
-const projectsByAuthor = (pageNum, userId) => async (dispatch) => {
+const projectsByAuthor = (pageNum, userId, query, searchBy) => async (
+  dispatch
+) => {
   dispatch({ type: types.GET_PROJECTS_BY_AUTHOR_REQUEST, payload: null });
   try {
-    const res = await api.get(
-      `/projects/user/${userId}?page=${pageNum}&limit=10`
-    );
-    dispatch({
-      type: types.GET_PROJECTS_BY_AUTHOR_SUCCESS,
-      payload: res.data.data,
-    });
+    if (query) {
+      const res = await api.get(
+        `/projects/user/${userId}?page=${pageNum}&limit=10&${searchBy}[$regex]=${query}&${searchBy}[$options]=i`
+      );
+      dispatch({
+        type: types.GET_PROJECTS_BY_AUTHOR_SUCCESS,
+        payload: res.data.data,
+      });
+    } else {
+      const res = await api.get(
+        `/projects/user/${userId}?page=${pageNum}&limit=10`
+      );
+      dispatch({
+        type: types.GET_PROJECTS_BY_AUTHOR_SUCCESS,
+        payload: res.data.data,
+      });
+    }
   } catch (error) {
     dispatch({ type: types.GET_PROJECTS_BY_AUTHOR_FAILURE, payload: null });
   }
 };
-
-// const projectsRequest = (
-//   topicId,
-//   pagenum,
-//   query,
-//   sortBy,
-//   ascending,
-//   searchBy
-// ) => async (dispatch) => {
-//   dispatch({ type: types.GET_PROJECTS_REQUEST, payload: null });
-//   try {
-//     // TODO
-//     const res = await api.get(
-//       `/${topicId}/projects?page=${pagenum}&limit=10&${searchBy}[$regex]=${query}&${searchBy}[$options]=i&sortBy[${sortBy}]=${ascending}`
-//     );
-//     dispatch({ type: types.GET_PROJECTS_SUCCESS, payload: res.data.data });
-//   } catch (error) {
-//     dispatch({ type: types.GET_PROJECTS_FAILURE, payload: null });
-//     toast.error(error.message);
-//   }
-// };
 
 const getSelctedProject = (projectId) => async (dispatch) => {
   dispatch({ type: types.GET_SELECTED_PROJECT_REQUEST, payload: null });

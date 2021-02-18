@@ -1,0 +1,1 @@
+export const SET_SHOW_SEARCH = "SEARCH.SET_SHOW_SEARCH";

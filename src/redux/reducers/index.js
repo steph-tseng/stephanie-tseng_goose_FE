@@ -4,6 +4,7 @@ import topicReducer from "./topic.reducer";
 import routeReducer from "./route.reducer";
 import userReducer from "./user.reducer";
 import projectReducer from "./project.reducer";
+import searchReducer from "./search.reducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   topic: topicReducer,
   project: projectReducer,
   route: routeReducer,
+  search: searchReducer,
 });

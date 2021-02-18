@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import gooseIcon from "../images/gooseicon.png";
 import Typing from "../components/Typing";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -184,15 +185,7 @@ const HomePage = () => {
         </Paper>
       </Grid> */}
 
-      <AppBar color="secondary" position="static" className={classes.AppBar}>
-        <Toolbar>
-          <Grid container justify="center">
-            <Typography align="center" variant="body1">
-              © 2021 Goose, Inc. All Rights Reserved.
-            </Typography>
-          </Grid>
-        </Toolbar>
-      </AppBar>
+      <Footer />
     </ThemeProvider>
   );
 };

@@ -1,8 +1,10 @@
 import {
   FormControl,
   Grid,
+  Input,
   makeStyles,
   Paper,
+  Popover,
   TextField,
   Typography,
 } from "@material-ui/core";
@@ -10,9 +12,12 @@ import Pagination from "@material-ui/lab/Pagination";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectCard from "../components/BigProjectCard";
+import Footer from "../components/Footer";
 import SplitButton from "../components/MergeButtonMUI";
+import SearchPopover from "../components/SearchPopover";
 import SmallProjectCard from "../components/SmallProjectCard";
 import projectActions from "../redux/actions/project.actions";
+import searchActions from "../redux/actions/search.actions";
 import userActions from "../redux/actions/user.actions";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     // backgroundImage:
     //   "url(https://img.freepik.com/free-vector/watercolor-background_23-2148496281.jpg?size=626&ext=jpg&ga=GA1.2.1403479552.1606608000)",
     // "url(https://canadagoosegallery.com/wp-content/uploads/2017/02/FullSizeRender-120-e1511265879107.jpg)",
-    backgroundSize: "100vw 100vh",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "top",
-    backgroundAttachment: "fixed",
-    objectFit: "cover",
+    // backgroundSize: "100vw 100vh",
+    // backgroundRepeat: "no-repeat",
+    // backgroundPosition: "top",
+    // backgroundAttachment: "fixed",
+    // objectFit: "cover",
     overflowX: "hidden",
     // marginBottom: theme.spacing(2),
   },
@@ -50,43 +55,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(5),
     paddingRight: theme.spacing(5),
   },
-  inputRoot: {
-    color: "inherit",
-    borderRadius: "10px",
-    borderBottomColor: "white",
-    // backgroundColor: "grey",
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: theme.palette.primary.dark,
-      },
-      "&:hover fieldset": {
-        borderColor: theme.palette.primary.main,
-      },
-    },
-    "& .MuiInput-underline": {
-      borderBottomColor: "white",
-    },
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    color: "#fff",
-    // vertical padding + font size from searchIcon
-    // paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-    "& .MuiInputBase-input": {
-      color: "white",
-    },
-  },
-  input: {
-    color: "white",
-  },
+
   pagination: {
     marginBottom: theme.spacing(2),
   },
@@ -98,12 +67,13 @@ const AllProjectsPage = () => {
   const projects = useSelector((state) => state.project.projects);
   const totalPageNum = useSelector((state) => state.project.totalPageNum);
   const [pageNum, setPageNum] = useState(1);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const following = useSelector((state) => state.user.following).map(
-    (item) => item._id
-  );
+  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  // const following = useSelector((state) => state.user.following).map(
+  //   (item) => item._id
+  // );
+  const showSearch = useSelector((state) => state.search.showSearch);
   const [query, setQuery] = useState("");
-  const [searchBy, setSearchBy] = useState("");
+  const [searchBy, setSearchBy] = useState("content");
 
   useEffect(() => {
     dispatch(userActions.getListOfFollowing());
@@ -123,52 +93,25 @@ const AllProjectsPage = () => {
   }, [dispatch, pageNum]);
 
   useEffect(() => {
-    if (searchBy && query) {
+    if (query) {
       dispatch(projectActions.projectsRequest(pageNum, query, searchBy));
     }
   }, [dispatch, pageNum, searchBy, query]);
 
+  const setSearch = () => {
+    dispatch(searchActions.setShowSearch(showSearch ? null : "show"));
+  };
+
   return (
-    <div>
+    <div className={classes.root}>
+      <SearchPopover
+        showSearch={showSearch}
+        setSearch={setSearch}
+        query={query}
+        handleSearchText={handleSearchText}
+      />
       <Grid container className={classes.header}>
-        <Grid
-          item
-          xs={9}
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginRight: "-2vw",
-          }}
-        >
-          <FormControl color="primary">
-            <TextField
-              label="Search"
-              placeholder="Key words, title..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              InputProps={{
-                className: classes.input,
-              }}
-              type="search"
-              value={query}
-              onChange={handleSearchText}
-              inputProps={{ "aria-label": "search" }}
-              color="primary"
-              variant="filled"
-            />
-          </FormControl>
-        </Grid>
-        <Grid item xs={2}>
-          <SplitButton
-            options={["Title", "Content", "Tags"]}
-            setSearchBy={setSearchBy}
-          />
-        </Grid>
-        <Grid item style={{ marginTop: "-30vh" }}>
-          <Typography variant="h1">All Projects</Typography>
-        </Grid>
+        <Typography variant="h1">All Projects</Typography>
       </Grid>
       {projects && (
         <Grid container justify="center">
@@ -200,6 +143,7 @@ const AllProjectsPage = () => {
           />
         </Grid>
       )}
+      <Footer />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Footer from "../../components/Footer";
 import ProfileCard from "../../components/ProfileCard";
 import projectActions from "../../redux/actions/project.actions";
 import userActions from "../../redux/actions/user.actions";
@@ -63,6 +64,7 @@ const FollowingListPage = () => {
           </Grid>
         ))}
       </Grid>
+      <Footer />
     </div>
   );
 };

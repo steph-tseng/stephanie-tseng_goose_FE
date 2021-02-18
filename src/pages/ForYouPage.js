@@ -7,6 +7,9 @@ import SmallProjectCard from "../components/SmallProjectCard";
 import { Link } from "react-router-dom";
 import ProjectCard from "../components/BigProjectCard";
 import Pagination from "@material-ui/lab/Pagination";
+import Footer from "../components/Footer";
+import SearchPopover from "../components/SearchPopover";
+import searchActions from "../redux/actions/search.actions";
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -30,10 +33,18 @@ const ForYouPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const totalPageNum = useSelector((state) => state.project.totalPageNum);
   const projects = useSelector((state) => state.project.projects).flat();
-  const following = useSelector((state) => state.user.following).map(
-    (item) => item._id
-  );
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [query, setQuery] = useState("");
+  const [searchBy, setSearchBy] = useState("content");
+  const showSearch = useSelector((state) => state.search.showSearch);
+
+  const handleSearchText = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const setSearch = () => {
+    dispatch(searchActions.setShowSearch(showSearch ? null : "show"));
+  };
 
   const handlePageChange = (event, value) => {
     setPageNum(value);
@@ -44,17 +55,15 @@ const ForYouPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(projectActions.projectsOfFollowing(pageNum));
-  }, [dispatch, pageNum]);
+    if (query === "") {
+      dispatch(projectActions.projectsOfFollowing(pageNum));
+    }
+  }, [dispatch, pageNum, query]);
 
-  const startFollowing = (userId) => {
-    dispatch(userActions.followRequest(userId));
-  };
-
-  const handleUnfollow = (userId) => {
-    dispatch(userActions.unfollow(userId));
-    dispatch(projectActions.projectsOfFollowing(pageNum));
-  };
+  useEffect(() => {
+    if (query)
+      dispatch(projectActions.projectsOfFollowing(pageNum, query, searchBy));
+  }, [dispatch, pageNum, query, searchBy]);
 
   return (
     <div>
@@ -63,6 +72,12 @@ const ForYouPage = () => {
           For You
         </Typography>
       </header>
+      {/* <SearchPopover
+        showSearch={showSearch}
+        setSearch={setSearch}
+        query={query}
+        handleSearchText={handleSearchText}
+      /> */}
       <Grid container justify="center" spacing={0}>
         {projects ? (
           <>
@@ -115,6 +130,7 @@ const ForYouPage = () => {
           />
         </Grid>
       )}
+      <Footer />
     </div>
   );
 };

@@ -14,6 +14,8 @@ import { socketTypes, conversationTypes } from "../../config/constants.js";
 import socketIOClient from "socket.io-client";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useSelector } from "react-redux";
+import Footer from "../../components/Footer";
+import { toast } from "react-toastify";
 let socket;
 
 const useStyles = makeStyles((theme) => ({
@@ -134,6 +136,7 @@ const HonkChat = () => {
             ...globalMessages,
             data.globalMsg,
           ]);
+          // toast.success("New Message");
         }
       });
     }

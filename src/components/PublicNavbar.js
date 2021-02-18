@@ -12,7 +12,7 @@ import {
   useScrollTrigger,
   withStyles,
 } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -21,6 +21,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import gooseLogo from "../images/mrgoose.png";
 import authActions from "../redux/actions/auth.actions";
 import PopoverMenu from "./PopoverMenu";
+import SearchIcon from "@material-ui/icons/Search";
 import topicActions from "../redux/actions/topic.actions";
 import PropTypes from "prop-types";
 import Menu from "material-ui-popup-state/HoverMenu";
@@ -30,6 +31,7 @@ import {
   bindMenu,
 } from "material-ui-popup-state/hooks";
 import projectActions from "../redux/actions/project.actions";
+import searchActions from "../redux/actions/search.actions";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -156,6 +158,8 @@ const PublicNavbar = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loading = useSelector((state) => state.auth.loading);
   const topics = useSelector((state) => state.topic.allTopics);
+  const showSearch = useSelector((state) => state.search.showSearch);
+  const [searchIcon, setSearchIcon] = useState(null);
   const trigger = useScrollTrigger({
     disableHysteresis: false,
     threshold: 0,
@@ -177,17 +181,42 @@ const PublicNavbar = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(authActions.logout());
   };
+
   useEffect(() => {
     dispatch(topicActions.allTopicsRequest());
   }, [dispatch]);
+
   const cancelSelected = () => {
     dispatch(projectActions.cancelSelected());
     dispatch(topicActions.cancelSelected());
   };
+
+  const setSearch = () => {
+    dispatch(searchActions.setShowSearch(showSearch ? null : "show"));
+    // console.log("search", showSearch);
+  };
+
+  // console.log("where am i?", document.URL);
+  // console.log("where am i?", window.location.pathname);
+
+  useEffect(() => {
+    if (value === 0) setSearchIcon(null);
+    if (
+      document.URL.includes("/projects") ||
+      document.URL.includes("/topics")
+    ) {
+      setSearchIcon("show");
+    } else {
+      setSearchIcon(null);
+    }
+  }, [value]);
+
   return (
     <>
       {!loading && (
@@ -213,8 +242,8 @@ const PublicNavbar = () => {
                 xs={9}
                 sm={9}
                 md={10}
-                lg={isAuthenticated ? 11 : 10}
-                xl={isAuthenticated ? 11 : 10}
+                lg={isAuthenticated ? 10 : 10}
+                xl={isAuthenticated ? 10 : 10}
                 style={{ overflow: "scroll" }}
               >
                 <Typography variant="h6">
@@ -353,9 +382,12 @@ const PublicNavbar = () => {
                 xs={3}
                 sm={3}
                 md={2}
-                lg={isAuthenticated ? 1 : 2}
-                xl={isAuthenticated ? 1 : 2}
-                style={{ display: "flex" }}
+                lg={isAuthenticated ? 2 : 2}
+                xl={isAuthenticated ? 2 : 2}
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
               >
                 <Typography
                   variant="h5"
@@ -364,6 +396,17 @@ const PublicNavbar = () => {
                   }}
                   gutterBottom
                 >
+                  {searchIcon && (
+                    <IconButton
+                      color="primary"
+                      size="medium"
+                      style={{ padding: "10px" }}
+                      classes={{ root: classes.btn }}
+                      onClick={setSearch}
+                    >
+                      <SearchIcon fontSize="large" />
+                    </IconButton>
+                  )}
                   {isAuthenticated ? (
                     <>
                       <IconButton

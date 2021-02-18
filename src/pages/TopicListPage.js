@@ -8,11 +8,15 @@ import Pagination from "@material-ui/lab/Pagination";
 import projectActions from "../redux/actions/project.actions";
 import topicActions from "../redux/actions/topic.actions";
 import pattern from "../images/pattern.jpg";
+import Footer from "../components/Footer";
+import SearchPopover from "../components/SearchPopover";
+import searchActions from "../redux/actions/search.actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     // background: theme.palette.secondary.main,
     height: "100vh",
+    width: "100vw",
     // paddingTop: theme.spacing(16),
     // backgroundImage:
     //   "url(https://img.freepik.com/free-vector/watercolor-background_23-2148496281.jpg?size=626&ext=jpg&ga=GA1.2.1403479552.1606608000)",
@@ -23,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundAttachment: "fixed",
     objectFit: "cover",
     overflowX: "hidden",
+    // display: "flex",
+    // justifyContent: "center",
     // marginBottom: theme.spacing(2),
   },
   pattern: {
@@ -56,9 +62,9 @@ const TopicListPage = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const totalPageNum = useSelector((state) => state.topic.totalPageNum);
   const [pageNum, setPageNum] = useState(1);
-  const [showSearch, setShowSearch] = useState(null);
+  const showSearch = useSelector((state) => state.search.showSearch);
   const [query, setQuery] = useState("");
-  const [searchBy, setSearchBy] = useState("");
+  const [searchBy, setSearchBy] = useState("title");
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -73,7 +79,6 @@ const TopicListPage = () => {
 
   const clickTopic = (topicId) => {
     history.push(`/topics/${topicId}`);
-    setShowSearch(null);
   };
 
   useEffect(() => {
@@ -81,23 +86,23 @@ const TopicListPage = () => {
   }, [dispatch, pageNum]);
 
   useEffect(() => {
-    if (searchBy) {
+    if (query) {
       dispatch(topicActions.topicsRequest(pageNum, searchBy, query));
     }
   }, [dispatch, pageNum, searchBy, query]);
 
-  const addTopic = () => {
-    dispatch(topicActions.cancelSelected());
-    history.push(`/edittopic`);
+  const setSearch = () => {
+    dispatch(searchActions.setShowSearch(showSearch ? null : "show"));
   };
 
-  const addProject = () => {
-    dispatch(projectActions.cancelSelected());
-    history.push(`/editproject`);
-  };
   return (
     <div className={classes.root}>
-      {/* <h1>Topics</h1> */}
+      <SearchPopover
+        showSearch={showSearch}
+        setSearch={setSearch}
+        query={query}
+        handleSearchText={handleSearchText}
+      />
       <div
         style={{
           height: "70px",
@@ -148,6 +153,7 @@ const TopicListPage = () => {
           classes={{ root: classes.pagination }}
         />
       </Grid>
+      <Footer />
     </div>
   );
 };

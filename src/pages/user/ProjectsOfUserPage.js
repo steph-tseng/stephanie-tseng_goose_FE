@@ -2,6 +2,7 @@ import { Grid, makeStyles, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProjectCard from "../../components/BigProjectCard";
+import Footer from "../../components/Footer";
 import SmallProjectCard from "../../components/SmallProjectCard";
 import projectActions from "../../redux/actions/project.actions";
 
@@ -55,6 +56,7 @@ const ProjectsOfUserPage = () => {
           </Grid>
         )}
       </Grid>
+      <Footer />
     </>
   );
 };
