@@ -46,7 +46,13 @@ const UserPage = () => {
   return (
     <>
       <header className={classes.header}></header>
-      <Grid container direction="column" alignItems="center" justify="center">
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ marginTop: "-15vh", marginBottom: "20vh" }}
+      >
         <div className="pic">
           <Avatar
             src={
@@ -56,16 +62,21 @@ const UserPage = () => {
             style={{ height: "60px", width: "60px" }}
           />
         </div>
-        <Typography variant="h1" align="center" color="textSecondary">
+        <Typography variant="h3" align="center" color="textPrimary">
           {user?.name}
         </Typography>
         {user?.bio && (
-          <Typography variant="body1" gutterBottom align="center">
+          <Typography
+            variant="body1"
+            color="textPrimary"
+            gutterBottom
+            align="center"
+          >
             {user.bio}
           </Typography>
         )}
       </Grid>
-      <Divider />
+      <hr />
       <Grid container justify="center">
         {projects && (
           <Grid container justify="center">
