@@ -226,7 +226,7 @@ const PublicNavbar = () => {
           style={{ maxHeight: "70px", width: "100vw" }}
           className="appbar"
         >
-          <Toolbar className={classes.toolbar}>
+          <Toolbar classes={{ root: classes.toolbar }}>
             <Link to="/">
               <img
                 src={gooseLogo}
@@ -245,6 +245,7 @@ const PublicNavbar = () => {
                 lg={isAuthenticated ? 10 : 10}
                 xl={isAuthenticated ? 10 : 10}
                 style={{ overflow: "scroll" }}
+                className="appbar"
               >
                 <Typography variant="h6">
                   <Box>
