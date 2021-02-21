@@ -218,7 +218,7 @@ const RegisterPage = () => {
               textAlign: "center",
             }}
           >
-            <FacebookLogin
+            {/* <FacebookLogin
               appId={FB_APP_ID}
               fields="name,email,picture"
               callback={loginWithFacebook}
@@ -241,7 +241,7 @@ const RegisterPage = () => {
                 background: "none",
                 border: "none",
               }}
-            />
+            /> */}
             <GoogleLogin
               // className="google-btn d-flex justify-content-center"
               className={classes.centering}
