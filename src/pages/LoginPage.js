@@ -172,6 +172,7 @@ const LoginPage = () => {
               onSuccess={loginWithGoogle}
               onFailure={(err) => console.log("GOOGLE LOGIN ERROR", err)}
               cookiePolicy="single_host_origin"
+              style={{ maxWidth: "300px" }}
             />
           </div>
         </Paper>

@@ -79,7 +79,7 @@ const ForYouPage = () => {
         handleSearchText={handleSearchText}
       /> */}
       <Grid container justify="center" spacing={0}>
-        {projects ? (
+        {projects.length > 0 ? (
           <>
             <Grid container justify="center">
               <Grid item sm={12} lg={12} style={{ marginTop: "-5vh" }}>
