@@ -61,7 +61,7 @@ const HomePage = () => {
   const Video = useRef(null);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} style={{ overflowX: "hidden" }}>
       <section ref={Video}>
         <Grid container classes={{ container: classes.container }}>
           <Grid item classes={{ root: classes.video }}>
