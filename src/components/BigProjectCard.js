@@ -61,6 +61,7 @@ const ProjectCard = ({ project }) => {
   const following = useSelector((state) => state.user.following).map(
     (item) => item._id
   );
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const theme = useTheme();
   const history = useHistory();
 
@@ -117,22 +118,26 @@ const ProjectCard = ({ project }) => {
                   <Typography variant="h6">
                     {"By " + project?.author?.name || "author"}
                   </Typography>
-                  {!following.includes(project.author._id) ? (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => startFollowing(project.author._id)}
-                    >
-                      Follow
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => handleUnfollow(project.author._id)}
-                    >
-                      Unfollow
-                    </Button>
+                  {isAuthenticated && (
+                    <>
+                      {!following.includes(project.author._id) ? (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => startFollowing(project.author._id)}
+                        >
+                          Follow
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => handleUnfollow(project.author._id)}
+                        >
+                          Unfollow
+                        </Button>
+                      )}
+                    </>
                   )}
                 </Paper>
               </Grid>
@@ -187,22 +192,26 @@ const ProjectCard = ({ project }) => {
                   <Typography variant="h6">
                     {"By " + project?.author?.name || "author"}
                   </Typography>
-                  {!following.includes(project.author._id) ? (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => startFollowing(project.author._id)}
-                    >
-                      Follow
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => handleUnfollow(project.author._id)}
-                    >
-                      Unfollow
-                    </Button>
+                  {isAuthenticated && (
+                    <>
+                      {!following.includes(project.author._id) ? (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => startFollowing(project.author._id)}
+                        >
+                          Follow
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => handleUnfollow(project.author._id)}
+                        >
+                          Unfollow
+                        </Button>
+                      )}
+                    </>
                   )}
                 </Paper>
               </Grid>
@@ -252,22 +261,26 @@ const ProjectCard = ({ project }) => {
                   <Typography variant="h6">
                     {"By " + project?.author?.name || "author"}
                   </Typography>
-                  {!following.includes(project?.author?._id) ? (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => startFollowing(project.author._id)}
-                    >
-                      Follow
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="text"
-                      color="primary"
-                      onClick={() => handleUnfollow(project.author._id)}
-                    >
-                      Unfollow
-                    </Button>
+                  {isAuthenticated && (
+                    <>
+                      {!following.includes(project.author._id) ? (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => startFollowing(project.author._id)}
+                        >
+                          Follow
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="text"
+                          color="primary"
+                          onClick={() => handleUnfollow(project.author._id)}
+                        >
+                          Unfollow
+                        </Button>
+                      )}
+                    </>
                   )}
                 </Paper>
               </Grid>
