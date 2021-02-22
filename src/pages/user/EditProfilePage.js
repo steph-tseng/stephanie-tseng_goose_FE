@@ -150,14 +150,7 @@ const EditProfilePage = () => {
               classes={{ root: classes.textField }}
               color="secondary"
             />
-          </Typography>
-          <br />
-          <Typography
-            variant="h6"
-            color="textSecondary"
-            gutterBottom
-            align="center"
-          >
+            <br />
             Name:
             <TextField
               name="name"
@@ -165,29 +158,13 @@ const EditProfilePage = () => {
               onChange={handleChange}
               classes={{ root: classes.textField }}
             />
-          </Typography>
-          {user?.bio && (
-            <Typography
-              variant="h6"
-              color="textSecondary"
-              gutterBottom
-              align="center"
-            >
-              Bio:
-              <TextField
-                name="bio"
-                value={formData.bio}
-                onChange={handleChange}
-                classes={{ root: classes.textField }}
-              />
-            </Typography>
-          )}
-          <Typography
-            variant="h6"
-            color="textSecondary"
-            gutterBottom
-            align="center"
-          >
+            Bio:
+            <TextField
+              name="bio"
+              value={formData.bio}
+              onChange={handleChange}
+              classes={{ root: classes.textField }}
+            />
             Password:
             <Input
               name="password"
@@ -207,13 +184,6 @@ const EditProfilePage = () => {
                 </InputAdornment>
               }
             />
-          </Typography>
-          <Typography
-            variant="h6"
-            color="textSecondary"
-            gutterBottom
-            align="center"
-          >
             Confirm Password:
             <Input
               name="password2"
