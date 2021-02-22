@@ -190,7 +190,7 @@ const PublicNavbar = () => {
 
   useEffect(() => {
     dispatch(topicActions.allTopicsRequest());
-  }, [dispatch]);
+  }, [dispatch, topics]);
 
   const cancelSelected = () => {
     dispatch(projectActions.cancelSelected());
@@ -208,8 +208,8 @@ const PublicNavbar = () => {
   useEffect(() => {
     if (value === 0) setSearchIcon(null);
     if (
-      document.URL.includes("/projects") ||
-      document.URL.includes("/topics")
+      window.location.pathname === "/projects" ||
+      window.location.pathname === "/topics"
     ) {
       setSearchIcon("show");
     } else {

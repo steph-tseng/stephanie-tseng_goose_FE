@@ -135,22 +135,26 @@ const ProjectPage = () => {
             <br />
             <Typography variant="subtitle1" style={{ zIndex: 5 }}>
               {project?.author?.name}
-              {!following.includes(project?.author?._id) ? (
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={() => startFollowing(project.author._id)}
-                >
-                  Follow
-                </Button>
-              ) : (
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={() => handleUnfollow(project.author._id)}
-                >
-                  Unfollow
-                </Button>
+              {currentUser?._id !== project?.author?._id && (
+                <>
+                  {!following.includes(project?.author?._id) ? (
+                    <Button
+                      variant="text"
+                      color="primary"
+                      onClick={() => startFollowing(project.author._id)}
+                    >
+                      Follow
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="text"
+                      color="primary"
+                      onClick={() => handleUnfollow(project.author._id)}
+                    >
+                      Unfollow
+                    </Button>
+                  )}
+                </>
               )}
             </Typography>
           </header>

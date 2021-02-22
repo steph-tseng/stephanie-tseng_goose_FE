@@ -25,6 +25,19 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "5vw",
     marginBottom: "10vh",
   },
+  paper: {
+    // height: "50vh",
+    display: "flex",
+    justifyContent: "center",
+    justifyItems: "center",
+    alignContent: "center",
+    alignItems: "center",
+    padding: theme.spacing(15),
+    paddingTop: theme.spacing(7),
+  },
+  a: {
+    textDecoration: "none",
+  },
 }));
 
 const ForYouPage = () => {
@@ -96,8 +109,8 @@ const ForYouPage = () => {
           </>
         ) : (
           <Grid item xs={12}>
-            <Paper style={{ height: "50vh", marginBottom: "5vh" }}>
-              <Typography variant="h6">
+            <Paper classes={{ root: classes.paper }}>
+              <Typography variant="h2" style={{ fontSize: "4vh" }}>
                 You're not following anyone! Go follow some people from the
                 <Link to="/user/users" className={classes.a}>
                   {" "}

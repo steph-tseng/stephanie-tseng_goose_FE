@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     height: "50vh",
     overflow: "hidden",
-    backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,7)), url(https://lh3.googleusercontent.com/proxy/g7IJW3Mugb2HtU9ydOqUPfsaKWK0Mv-I7V61T3rO8zLaIoNlyHqCk9ozbB9aYrFzwDPEVCIJW3W17RUZjI-bcULnPNRTyqv2uswoztiEWrCzC4ggkJcPim4wOcsUJKdW0j7OIT_wUDTea59XeBN-GyGQpNNn7xVN0klvHuOnU8bDgDemweGQ3rk)`,
+    backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,7)), url(https://www.customwallpaper.net.au/wp-content/uploads/2015/12/AdobeStock_62110777-600x399.jpeg)`,
     backgroundSize: "100vw auto",
     backgroundColor: "rgba(0,0,0,0.7)",
     color: "#fff",

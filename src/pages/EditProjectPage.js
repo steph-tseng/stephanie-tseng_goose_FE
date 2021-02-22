@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     marginLeft: "2rem",
     textAlign: "center",
-    height: "105vh",
+    height: "95vh",
     border: "solid",
     borderWidth: "1px",
     padding: "20px",
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
   preview: {
     marginTop: theme.spacing(10),
     marginLeft: "2rem",
-    height: "105vh",
+    height: "95vh",
     borderWidth: "1px",
     padding: "20px",
     borderRadius: "10px",
@@ -416,7 +416,7 @@ const AddEditProjectPage = () => {
                   ))}
                 </NativeSelect>
               </FormControl>
-              <TextField
+              {/* <TextField
                 id="outlined-basic"
                 label="Tags"
                 variant="outlined"
@@ -425,7 +425,7 @@ const AddEditProjectPage = () => {
                 value={formData.tags}
                 onChange={handleChange}
                 placeholder="Tags separated by commas"
-              />
+              /> */}
             </form>
             <ButtonGroup
               color="primary"

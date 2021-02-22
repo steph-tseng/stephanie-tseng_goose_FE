@@ -133,20 +133,18 @@ const TopicPage = () => {
           )}
         </div>
 
-        {projects && (
-          <Grid container justify="center">
-            <Grid item sm={12} lg={12} style={{ marginTop: "-5vh", zIndex: 2 }}>
-              <ProjectCard project={projects[0]} />
-            </Grid>
-            {projects?.slice(1).map((project) => {
-              return (
-                <Grid item xs={6} sm={6} lg={5} key={project._id}>
-                  <SmallProjectCard project={project} />
-                </Grid>
-              );
-            })}
+        <Grid container justify="center">
+          <Grid item sm={12} lg={12} style={{ marginTop: "-5vh", zIndex: 2 }}>
+            <ProjectCard project={projects[0]} />
           </Grid>
-        )}
+          {projects?.slice(1).map((project) => {
+            return (
+              <Grid item xs={6} sm={6} lg={5} key={project._id}>
+                <SmallProjectCard project={project} />
+              </Grid>
+            );
+          })}
+        </Grid>
         {totalPageNum > 1 && (
           <Grid container justify="center">
             <Pagination
