@@ -17,7 +17,7 @@ import { Link, useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   image: {
     maxHeight: "90vh",
-    maxWidth: "90vw",
+    width: "90vw",
     objectFit: "cover",
     backgroundRepeat: "no-repeat",
     // zIndex: -1000,

@@ -95,8 +95,8 @@ const ForYouPage = () => {
             </Grid>
           </>
         ) : (
-          <Grid item>
-            <Paper>
+          <Grid item xs={12}>
+            <Paper style={{ height: "50vh", marginBottom: "5vh" }}>
               <Typography variant="h6">
                 You're not following anyone! Go follow some people from the
                 <Link to="/user/users" className={classes.a}>
