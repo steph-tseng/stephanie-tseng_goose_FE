@@ -119,9 +119,9 @@ const ForYouPage = () => {
                 or from
                 <Link to="/projects" className={classes.a}>
                   {" "}
-                  the list of all projects
+                  the list of all posts
                 </Link>{" "}
-                and see their projects here.
+                and see their posts here.
               </Typography>
             </Paper>
           </Grid>

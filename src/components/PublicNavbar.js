@@ -275,7 +275,7 @@ const PublicNavbar = () => {
                       />
                       {/* </StyledTabs> */}
                       <LinkTab
-                        label="All Projects"
+                        label="All Posts"
                         to="/projects"
                         {...a11yProps(3)}
                       />
@@ -370,7 +370,7 @@ const PublicNavbar = () => {
                             setValue(4);
                           }}
                         >
-                          Project
+                          Post
                         </MenuItem>
                       </Menu>
                       {/* <LinkTab label="Topics" to="/topics" {...a11yProps(1)} /> */}
@@ -465,7 +465,7 @@ const PublicNavbar = () => {
                             userActionsPopupState.close();
                           }}
                         >
-                          Your Projects
+                          Your Posts
                         </MenuItem>
                         <MenuItem
                           className={classes.menu}

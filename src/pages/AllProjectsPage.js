@@ -111,7 +111,7 @@ const AllProjectsPage = () => {
         handleSearchText={handleSearchText}
       />
       <Grid container className={classes.header}>
-        <Typography variant="h1">All Projects</Typography>
+        <Typography variant="h1">All Posts</Typography>
       </Grid>
       {projects && (
         <Grid container justify="center">

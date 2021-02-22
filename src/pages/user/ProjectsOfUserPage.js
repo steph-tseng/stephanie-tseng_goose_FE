@@ -37,7 +37,7 @@ const ProjectsOfUserPage = () => {
     <>
       <header className={classes.header}>
         <Typography variant="h1" align="center" color="textSecondary">
-          Your projects
+          Your posts
         </Typography>
       </header>
       <Grid container justify="center">
