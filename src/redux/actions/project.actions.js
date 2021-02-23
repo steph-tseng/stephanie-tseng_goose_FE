@@ -116,12 +116,19 @@ const createNewProject = ({
   content,
   topicId,
   tags,
+  images,
   redirectTo = "__GO_BACK__",
 }) => async (dispatch) => {
   dispatch({ type: types.CREATE_PROJECT_REQUEST, payload: null });
   try {
     console.log("====", topicId);
-    const res = await api.post(`projects`, { title, content, topicId, tags });
+    const res = await api.post(`projects`, {
+      title,
+      content,
+      topicId,
+      tags,
+      images,
+    });
     dispatch({
       type: types.CREATE_PROJECT_SUCCESS,
       payload: res.data.data,

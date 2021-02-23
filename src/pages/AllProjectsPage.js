@@ -114,8 +114,8 @@ const AllProjectsPage = () => {
         <Typography variant="h1">All Posts</Typography>
       </Grid>
       {projects && (
-        <Grid container justify="center">
-          <Grid item sm={12} lg={12} style={{ marginTop: "-5vh" }}>
+        <Grid container justify="center" style={{ marginTop: "-5vh" }}>
+          <Grid item sm={12} lg={12}>
             <ProjectCard project={projects[0]} />
           </Grid>
           {projects?.slice(1).map((project) => {

@@ -115,7 +115,7 @@ const ProfilePage = () => {
           >
             User since: <Moment format="MM-DD-YYYY">{user?.createdAt}</Moment>
           </Typography>
-          <br />
+          {/* <br />
           <Button
             className={classes.button}
             color="primary"
@@ -123,7 +123,7 @@ const ProfilePage = () => {
             onClick={() => history.push("/user/profile/edit")}
           >
             Edit
-          </Button>
+          </Button> */}
         </Grid>
       </Paper>
     </Grid>

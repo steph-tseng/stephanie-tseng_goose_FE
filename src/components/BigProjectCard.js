@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "cover",
     backgroundRepeat: "no-repeat",
     // zIndex: -1000,
+    marginTop: "-10vh",
   },
   paper: {
     // position: "absolute",

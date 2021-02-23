@@ -172,7 +172,7 @@ const AddEditProjectPage = () => {
     content: "",
     topicId: "",
     tags: [],
-    images: [],
+    images: "",
   });
   const redirectTo = useSelector((state) => state.route.redirectTo);
   const topics = useSelector((state) => state.topic.allTopics);
@@ -306,7 +306,7 @@ const AddEditProjectPage = () => {
         <Grid item xs={8} sm={11} md={6} lg={7}>
           <div className={classes.main}>
             <Typography variant="h2" align="center" className={classes.h2}>
-              {addOrEdit === "Edit" ? "Update Project" : "New Project"}
+              {addOrEdit === "Edit" ? "Update Post" : "New Post"}
             </Typography>
             <form className={classes.spacing} noValidate autoComplete="off">
               <TextField
