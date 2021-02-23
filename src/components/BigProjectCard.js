@@ -152,9 +152,9 @@ const ProjectCard = ({ project }) => {
                 </Typography>
                 <Typography variant="h6" align="center">
                   <ReactMarkdown allowDangerousHtml>
-                    {project?.content?.length < 40
+                    {project?.content?.length < 20
                       ? project.content
-                      : project.content.split(0, 40)[0]}
+                      : project.content.split(0, 20)[0]}
                   </ReactMarkdown>
                 </Typography>
               </Paper>
@@ -226,9 +226,9 @@ const ProjectCard = ({ project }) => {
                 </Typography>
                 <Typography variant="h6" align="center">
                   <ReactMarkdown allowDangerousHtml>
-                    {project?.content?.length < 40
+                    {project?.content?.length < 20
                       ? project.content
-                      : project.content.split(0, 40)[0]}
+                      : project.content.split(0, 20)[0]}
                   </ReactMarkdown>
                 </Typography>
               </Paper>

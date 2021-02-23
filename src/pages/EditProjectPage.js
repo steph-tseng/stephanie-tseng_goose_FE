@@ -481,7 +481,7 @@ const AddEditProjectPage = () => {
             </Typography>
             <hr style={{ marginTop: "50vh" }} />
             {/* <h6>{formData.topicId}</h6> */}
-            <Typography variant="subtitle1">#{formData.tags}</Typography>
+            <Typography variant="subtitle1">{formData.tags}</Typography>
           </div>
         </Grid>
       </Grid>

@@ -124,7 +124,7 @@ const HomePage = () => {
             sm={7}
             lg={7}
             style={{
-              marginBottom: "20vh",
+              marginBottom: "10vh",
               borderBottom: "5px inset #517485",
               paddingRight: "50px",
               paddingLeft: "50px",
@@ -138,7 +138,12 @@ const HomePage = () => {
             >
               Goose was born from my nostalgia for the geese that populate Bryn
               Mawr's green fields. They used to wake me up every morning and
-              their honks would accompany me to every class.
+              their honks would accompany me to every class. This website is a
+              place for people to be able to share their ideas and interact with
+              others who may or may not feel the same. There are so many
+              facebook groups dedicated to allowing strangers with similar
+              interests interact and I wanted to created a website that allowed
+              the same in a more streamlined manner.
             </Typography>
           </Grid>
         </Grid>
