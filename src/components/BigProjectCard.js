@@ -34,6 +34,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       boxShadow: "0 0 11px rgba(33,33,33,.4)",
     },
+    // height: "19vh",
+    // overflowY: "hidden",
+    // padding: "2vh",
   },
   txtCard: {
     zIndex: 10,
@@ -152,9 +155,9 @@ const ProjectCard = ({ project }) => {
                 </Typography>
                 <Typography variant="h6" align="center">
                   <ReactMarkdown allowDangerousHtml>
-                    {project?.content?.length < 20
+                    {project?.content?.length < 30
                       ? project.content
-                      : project.content.split(0, 20)[0]}
+                      : project.content.slice(0, 30) + "..."}
                   </ReactMarkdown>
                 </Typography>
               </Paper>
@@ -226,9 +229,9 @@ const ProjectCard = ({ project }) => {
                 </Typography>
                 <Typography variant="h6" align="center">
                   <ReactMarkdown allowDangerousHtml>
-                    {project?.content?.length < 20
+                    {project?.content?.length < 30
                       ? project.content
-                      : project.content.split(0, 20)[0]}
+                      : project.content.slice(0, 30) + "..."}
                   </ReactMarkdown>
                 </Typography>
               </Paper>
