@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 // import gooseLogo from "../images/cangoose.png";
-import gooseLogo from "../images/mrgoose.png";
+import gooseLogo from "../images/mrgoose (1).png";
 import authActions from "../redux/actions/auth.actions";
 import PopoverMenu from "./PopoverMenu";
 import SearchIcon from "@material-ui/icons/Search";
